@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Nucleo del Sistema — Mafer Edition</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&family=Dancing+Script:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="gradient-bg"></div>
+<canvas id="heartCanvas"></canvas>
+
+<audio id="bgMusic" loop>
+  <source src="piano.mp3" type="audio/mpeg">
+</audio>
+<audio id="loveMusic" loop>
+  <source src="EnamoradoTuyo.mpeg" type="audio/mpeg"> 
+</audio>
+<audio id="corazonMusic" loop>
+  <source src="Corazon.mp3" type="audio/mpeg"> 
+</audio>
+
+<div class="stars"><div class="star-layer"></div><div class="star-layer" style="animation-delay: 2s; transform: scale(0.7); opacity: 0.5;"></div></div>
+
+<div class="vault-container" id="vault" aria-live="polite">
+  <div class="vault-label">INGRESE CÓDIGO DE ACCESO</div>
+  <div class="screen" id="display" role="status">--------</div>
+  <div class="attempts" id="attemptsInfo">Intentos restantes: 3</div>
+
+  <div class="keypad">
+    <div class="key" data-val="1"><span class="num">1</span><span class="letters" style="visibility:hidden;">.</span></div>
+    <div class="key" data-val="2"><span class="num">2</span><span class="letters">ABC</span></div>
+    <div class="key" data-val="3"><span class="num">3</span><span class="letters">DEF</span></div>
+    <div class="key" data-val="4"><span class="num">4</span><span class="letters">GHI</span></div>
+    <div class="key" data-val="5"><span class="num">5</span><span class="letters">JKL</span></div>
+    <div class="key" data-val="6"><span class="num">6</span><span class="letters">MNO</span></div>
+    <div class="key" data-val="7"><span class="num">7</span><span class="letters">PQRS</span></div>
+    <div class="key" data-val="8"><span class="num">8</span><span class="letters">TUV</span></div>
+    <div class="key" data-val="9"><span class="num">9</span><span class="letters">WXYZ</span></div>
+    <div class="key btn-clear" data-action="clear"><span class="num">C</span></div>
+    <div class="key" data-val="0"><span class="num">0</span><span class="letters" style="letter-spacing:4px;">+</span></div>
+    <div class="key btn-ok" data-action="submit"><span class="num">OK</span></div>
+  </div>
+
+  <p>Perdon, lo termine muy aprisas, lo actualicare despues va ❤️</p>
+</div>
+
+<div class="success-loader" id="heartLoader">
+  <div class="loading-message" style="margin-top:20px; z-index: 20;">MAFER ❤️</div>
+  <div class="sub-message" style="z-index: 20;">Eres la contraseña de mi corazon</div>
+</div>
+
+<div class="success-loader" id="vinylLoader">
+  <div class="vinyl-record">
+    <div class="vinyl-label">
+      ENAMORADO<br>TUYO
+      <span>El Cuarteto de Nos</span>
+    </div>
+  </div>
+  
+  <div class="lyrics-box">
+    <div class="scrolling-lyrics">
+      <br><br>
+      Y si te parece que yo estoy enamorado tuyo<br>
+      Eso es un invento, intuyo, no des crédito a murmullos<br>
+      Porque casi nunca llamo para decir que te amo<br>
+      Y más de una vez lo hice a un número equivocado<br>
+      Casi nunca nadie dice que yo estoy enamorado tuyo<br>
+      <br> Raramente desespero por tenerte aquí a mi lado<br>
+      Y eso no significa que tenga un significado<br>
+      Si pensás que amor yo siento, por favor, no hagas pamento<br>
+      No comentes con tu gente sobre nuestro asunto<br>
+      Casi nunca nadie dice que yo estoy enamorado tuyo<br>
+      <br> No te vistas, no te hagás la nunca vista<br>
+      Tengo en vista cantarte un "hasta la vista"<br>
+      No te vistas, no te hagás la nunca vista<br>
+      Tengo lista una canción que dice: "hasta la vista, señorita"<br>
+      <br><br>
+      Casi nunca veo la foto tuya en mi celular<br>
+      Sigue ahí por la pereza que me da apretar "borrar"<br>
+      No estoy tan obsesionado, vale como aclaración<br>
+      Si pensás que es por eso que yo canto esta canción<br>
+      Casi nunca nadie dice que yo estoy enamorado tuyo<br>
+      <br> No te vistas, no te hagás la nunca vista<br>
+      Tengo en vista cantarte un "hasta la vista"<br>
+      No te vistas, no te hagás la nunca vista<br>
+      Tengo lista una canción que dice: "hasta la vista, señorita"<br>
+      <br><br> Y si te parece que yo estoy enamorado tuyo<br>
+      Eso es un invento, intuyo, no des crédito a murmullos<br>
+      Porque casi nunca llamo para decir que te amo<br>
+      Y más de una vez lo hice a un número equivocado<br>
+      Casi nunca nadie dice que yo estoy enamorado tuyo<br>
+      <br><br>
+      No te vistas, no te hagás la nunca vista<br>
+      Tengo en vista cantarte un "hasta la vista"<br>
+      No te vistas, no te hagás la nunca vista<br>
+      Tengo lista una canción que dice: "hasta la vista, señorita"
+      <br>
+      Me tarde 1 hora y media escribiendo esto a mano, solo los subtitulos, <br>
+      los puros subtitulos, ahora piensa en como estuvo todo este pedo, <br>
+      espero que lo aprecies jajaja.
+      <br><br><br><br><br><br><br><br><br><br>
+    </div>
+  </div>
+  <div class="sub-message" style="color:#4a0000; margin-top:10px;">Esta cancion me hace pensar en ti jajaja</div>
+</div>
+
+<div class="birthday-modal" id="birthdayModal">
+  <div class="birthday-card">
+    <h2>Sistema Bloqueado</h2>
+    <p>Has fallado 3 veces. Hay distintos codigos sabes jksjksj, te dare solo dos esta vez</p>
+    <p> <a>Pista 1:</a> Uno es tu 🎂🎉</p> 
+    <p> <a>Pista 2:</a> I LOVE YOU</p> 
+    <div style="display:flex;justify-content:center;gap:8px;margin-top:12px;">
+      <button class="btn btn-primary" id="btnReset">Reiniciar</button>
+      <button class="btn btn-ghost" id="btnClose">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+  
+  const CODES = {
+    DATE: { 
+      code: "24122007", 
+      type: "pink", 
+      loader: "heartLoader",
+      music: "corazon" 
+    },
+    LOVE: { 
+      code: "45683968", // ILOVEYOU
+      type: "white", 
+      loader: "vinylLoader",
+      music: "love"
+    },
+    FLOWER: {
+      code: "4472965", // GIRAZOL
+      type: "redirect",
+      url: "https://antraxred.github.io/MyFlower/"
+    }
+  };
+
+  const MAX_INTENTOS = 3;
+  let entradaActual = "";
+  let bloqueado = false;
+  let intentosFallidos = 0;
+  let primeraVez = true;
+  let musicaSonando = null; 
+
+  const displayEl = document.getElementById('display');
+  const vaultEl = document.getElementById('vault');
+  const attemptsInfo = document.getElementById('attemptsInfo');
+  const birthdayModal = document.getElementById('birthdayModal');
+  const btnReset = document.getElementById('btnReset');
+  const btnClose = document.getElementById('btnClose');
+  const audioPiano = document.getElementById('bgMusic');
+  const audioLove = document.getElementById('loveMusic');
+  const audioCorazon = document.getElementById('corazonMusic');
+  const canvasEl = document.getElementById('heartCanvas');
+
+  function iniciarMusicaPiano() {
+    if (musicaSonando === null) {
+      audioPiano.volume = 0.5;
+      audioPiano.play().then(() => {
+        musicaSonando = 'piano';
+      }).catch(e => console.log("Esperando interacción..."));
+    }
+  }
+
+  function detenerTodo() {
+    [audioPiano, audioLove, audioCorazon].forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+    });
+  }
+
+  function cambiarMusica(tipo) {
+    if (tipo === 'love') {
+      detenerTodo();
+      audioLove.volume = 1.0;
+      audioLove.playbackRate = 1.25; 
+      audioLove.play();
+      musicaSonando = 'love';
+    } 
+    else if (tipo === 'corazon') {
+      detenerTodo();
+      audioCorazon.volume = 1.0;
+      audioCorazon.play();
+      musicaSonando = 'corazon';
+    }
+    else {
+      if(musicaSonando === 'piano') audioPiano.volume = 0.8;
+    }
+  }
+
+  // Listeners Interacción
+  document.body.addEventListener('click', iniciarMusicaPiano, { once: true });
+  document.body.addEventListener('keydown', iniciarMusicaPiano, { once: true });
+
+  document.querySelector('.keypad').addEventListener('click', (e) => {
+    iniciarMusicaPiano();
+    const key = e.target.closest('.key');
+    if (!key) return;
+    if (key.dataset.action === 'clear') clearScreen();
+    else if (key.dataset.action === 'submit') verificar();
+    else if (key.dataset.val) press(key.dataset.val);
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (bloqueado) return;
+    if (/^[0-9]$/.test(e.key)) press(e.key);
+    else if (e.key === 'Backspace') backspace();
+    else if (e.key === 'Enter') verificar();
+  });
+
+  // Funciones de Pantalla
+  function actualizarPantalla() {
+    if (entradaActual.length === 0 && primeraVez) displayEl.innerText = "--------";
+    else displayEl.innerText = "*".repeat(entradaActual.length);
+  }
+
+  function press(num) {
+    if (bloqueado) return;
+    if (primeraVez) {
+      entradaActual = "";
+      primeraVez = false;
+      displayEl.classList.remove('error', 'success');
+      displayEl.style.color = "#00d2ff";
+      displayEl.style.borderColor = "#005678";
+    }
+    if (entradaActual.length < 12) {
+      entradaActual += String(num);
+      actualizarPantalla();
+    }
+  }
+
+  function backspace() {
+    if (bloqueado) return;
+    if (entradaActual.length > 0) {
+      entradaActual = entradaActual.slice(0, -1);
+      actualizarPantalla();
+    } else {
+      primeraVez = true;
+      actualizarPantalla();
+    }
+  }
+
+  function clearScreen() {
+    if (bloqueado) return;
+    entradaActual = "";
+    primeraVez = true;
+    displayEl.innerText = "--------";
+    displayEl.classList.remove('error', 'success');
+    displayEl.style.color = "#00d2ff";
+  }
+
+  // Verificación
+  function verificar() {
+    if (bloqueado || primeraVez || entradaActual.length === 0) return;
+    bloqueado = true;
+    setTimeout(() => {
+      let codigoEncontrado = null;
+      if (entradaActual === CODES.DATE.code) codigoEncontrado = CODES.DATE;
+      else if (entradaActual === CODES.LOVE.code) codigoEncontrado = CODES.LOVE;
+      else if (entradaActual === CODES.FLOWER.code) codigoEncontrado = CODES.FLOWER;
+
+      if (codigoEncontrado) {
+        onSuccess(codigoEncontrado);
+      } else {
+        onError();
+      }
+    }, 250);
+  }
+
+  function onSuccess(data) {
+    displayEl.innerText = "CORRECTO";
+    displayEl.classList.remove('error');
+    displayEl.classList.add('success');
+    intentosFallidos = 0;
+    attemptsInfo.innerText = `Intentos restantes: ${MAX_INTENTOS}`;
+
+    // REDIRECCIÓN INMEDIATA (Caso Girazol)
+    if (data.type === 'redirect') {
+      setTimeout(() => {
+        window.location.href = data.url;
+      }, 500); // Pequeña pausa para ver el "CORRECTO"
+      return;
+    }
+
+    // LÓGICA NORMAL (Modo Fecha y Love)
+    document.body.classList.add(data.type + '-mode');
+    cambiarMusica(data.music);
+
+    if (data.type === 'pink') {
+      canvasEl.style.opacity = '1';
+      startHeartAnimation(); 
+    }
+
+    const activeLoader = document.getElementById(data.loader);
+    setTimeout(() => {
+      vaultEl.classList.add('vault-hide');
+      setTimeout(() => {
+        vaultEl.style.display = 'none';
+        activeLoader.style.display = 'flex';
+        setTimeout(()=> activeLoader.style.opacity = '1', 50);
+      }, 500);
+    }, 800);
+  }
+
+  function onError() {
+    entradaActual = "";
+    displayEl.innerText = "ERROR";
+    displayEl.classList.remove('success');
+    displayEl.classList.add('error');
+    intentosFallidos++;
+    attemptsInfo.innerText = `Intentos restantes: ${Math.max(0, MAX_INTENTOS - intentosFallidos)}`;
+    if (intentosFallidos >= MAX_INTENTOS) {
+      setTimeout(() => showBirthdayMessage(), 600);
+      return; 
+    }
+    setTimeout(() => {
+      clearScreen();
+      bloqueado = false;
+    }, 1000);
+  }
+
+  function showBirthdayMessage() {
+    birthdayModal.style.display = 'flex';
+    bloqueado = true;
+    btnReset.focus();
+  }
+  function hideBirthdayMessage() {
+    birthdayModal.style.display = 'none';
+    entradaActual = "";
+    primeraVez = true;
+    clearScreen();
+    bloqueado = false;
+  }
+  btnReset.addEventListener('click', () => {
+    intentosFallidos = 0;
+    attemptsInfo.innerText = `Intentos restantes: ${MAX_INTENTOS}`;
+    hideBirthdayMessage();
+  });
+  btnClose.addEventListener('click', hideBirthdayMessage);
+  actualizarPantalla();
+</script>
+</body>
+</html>
