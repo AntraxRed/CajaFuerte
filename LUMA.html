@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Lumastyle.css">
+</head>
+<body>
+
+    <div class="scene">
+        <div class="cielo">
+            <div class="aurora-container">
+                <div class="aurora aurora-fondo"></div>
+                <div class="aurora aurora-frente"></div>
+            </div>
+        </div>
+        
+        <canvas id="particleCanvas"></canvas>
+        
+        <div class="mar">
+            <div class="ola ola-fondo"></div>
+            <div class="ola ola-media"></div>
+            <div class="ola ola-frente"></div>
+            <div class="ola ola-profunda-1"></div>
+            <div class="ola ola-profunda-2"></div>
+            <div class="ola ola-abismo"></div>
+        </div>
+        
+        <div class="luna-container" id="lunaContainer">
+            <div class="luna"></div>
+            <div class="moon-reflection"></div>
+        </div>
+    </div>
+
+    <button id="startBtn">🌕 Presiona</button>
+
+    <audio id="bgMusic" src="musica.mp3"></audio>
+
+    <div id="lyricsContainer"></div>
+    <script src="Lumascript.js"></script>
+</body>
+</html>
